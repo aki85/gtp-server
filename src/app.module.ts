@@ -6,6 +6,7 @@ import { AppService } from './app.service'
 import { TodoService } from './todo/todo.service'
 import { TodoModule } from './todo/todo.module'
 import { DBService } from './db/db.service'
+import { GitHubService } from './api/github.service'
 
 @Module({
   imports: [
@@ -17,6 +18,6 @@ import { DBService } from './db/db.service'
     TodoModule
   ],
   controllers: [AppController],
-  providers: [AppService, DBService, TodoService],
+  providers: [AppService, DBService, GitHubService, TodoService],
 })
 export class AppModule {}

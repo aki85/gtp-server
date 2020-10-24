@@ -1,7 +1,7 @@
-# nestjs-graphql-template
+# gitlev-server
 
 ## Front
-https://github.com/aki85/todo-redux-graphql
+https://github.com/aki85/gtp-front
 
 ## Environment
 * nodejs: ^12.x
