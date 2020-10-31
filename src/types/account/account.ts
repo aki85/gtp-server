@@ -1,0 +1,1 @@
+export type CoopType = 'github'

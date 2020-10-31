@@ -20,7 +20,7 @@ yarn run dynamo-win
 ### create local table
 
 aws dynamodb create-table --cli-input-json file://./migrations/todoTable.json --endpoint-url http://localhost:8000
-
+aws dynamodb create-table --cli-input-json file://./migrations/accountsTable.json --endpoint-url http://localhost:8000
 
 ### dev server
 yarn run dev

@@ -1,12 +1,16 @@
 import { GraphQLModule } from '@nestjs/graphql'
 import { ConfigModule } from '@nestjs/config'
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { TodoService } from './todo/todo.service'
+
+import { AuthModule } from './auth/auth.module'
 import { TodoModule } from './todo/todo.module'
+
+import { AppController } from './app.controller'
+
+import { AppService } from './app.service'
 import { DBService } from './db/db.service'
 import { GitHubService } from './api/github.service'
+import { TodoService } from './todo/todo.service'
 
 @Module({
   imports: [
@@ -15,6 +19,7 @@ import { GitHubService } from './api/github.service'
       playground: true,
       autoSchemaFile: 'schema.graphql'
     }),
+    AuthModule,
     TodoModule
   ],
   controllers: [AppController],

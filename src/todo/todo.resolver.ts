@@ -1,13 +1,15 @@
 import { Resolver, Query, Args, ID, Mutation } from '@nestjs/graphql'
-import { BadRequestException } from '@nestjs/common'
+import { BadRequestException, UseGuards } from '@nestjs/common'
 
 import Todo from '../models/todo/todo'
 
 import { TodoService } from './todo.service'
 import { DBService } from '../db/db.service'
+import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import TodoInput from '../models/todo/todo.input'
 
 @Resolver()
+@UseGuards(JwtAuthGuard)
 export class TodoResolver {
   constructor(
     private readonly dbservice: DBService,

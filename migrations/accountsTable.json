@@ -1,0 +1,37 @@
+{
+  "TableName": "accounts",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "id",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "githubId",
+      "AttributeType": "S"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 1,
+    "WriteCapacityUnits": 1
+  },
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "githubId",
+      "KeySchema": [
+          { "AttributeName": "githubId", "KeyType": "HASH" }
+      ],
+      "Projection": {
+          "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1, "WriteCapacityUnits": 1
+      }
+    }
+  ]
+}
