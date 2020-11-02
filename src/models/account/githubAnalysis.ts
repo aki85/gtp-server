@@ -25,12 +25,27 @@ export class Language {
 }
 
 @ObjectType()
+export class LanguagesTotal {
+  @Field(type => Int)
+  size: number
+
+  @Field(type => Int)
+  level: number
+}
+
+@ObjectType()
 class LanguagesData {
   @Field(type => [Language])
   involvedLanguages: Language[]
+  
+  @Field(type => LanguagesTotal)
+  involvedLanguagesTotal: LanguagesTotal
 
   @Field(type => [Language])
   ownerLanguages: Language[]
+  
+  @Field(type => LanguagesTotal)
+  ownerLanguagesTotal: LanguagesTotal
 }
 
 @ObjectType()

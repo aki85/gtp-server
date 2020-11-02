@@ -8,7 +8,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {}
 @Injectable()
 export class JwtAuthGuardGql extends AuthGuard('jwt') {
   getRequest(context: ExecutionContext) {
-    const ctx = GqlExecutionContext.create(context);
-    return ctx.getContext().req;
+    const ctx = GqlExecutionContext.create(context)
+    return ctx.getContext().req
   }
 }

@@ -97,6 +97,8 @@ ${process.env.FRONT_URL}/register/${token}
       throw new UnauthorizedException()
     }
 
+    account = await this.accountsService.updateGithubAnalysis(client, account.id)
+
     return {
       token: this.jwtService.sign(account)
     }

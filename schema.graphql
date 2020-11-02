@@ -21,9 +21,16 @@ type Language {
   level: Int!
 }
 
+type LanguagesTotal {
+  size: Int!
+  level: Int!
+}
+
 type LanguagesData {
   involvedLanguages: [Language!]!
+  involvedLanguagesTotal: LanguagesTotal!
   ownerLanguages: [Language!]!
+  ownerLanguagesTotal: LanguagesTotal!
 }
 
 type GithubAnalysis {

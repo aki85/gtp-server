@@ -7,7 +7,7 @@ import { GitHubApiService } from '../github/api.service'
 
 import Account from '../models/account/account'
 import CoopInfo from '../models/account/coopInfo'
-import GithubAnalysis, { Language } from '../models/account/githubAnalysis'
+import GithubAnalysis, { Language, LanguagesTotal } from '../models/account/githubAnalysis'
 
 import { CoopType } from '../types/account/account'
 
@@ -201,19 +201,26 @@ export class AccountsService {
       }
     }
 
+    const adjustedInvolvedLanguages = this.adjustLanguages(involvedLanguages)
+    const adjustedOwnerLanguages = this.adjustLanguages(ownerLanguages)
     return {
       repositoryCountData: {
         involvedCount: data.repositoryOwner.repositories.totalCount,
         ownerCount: data.repositoryOwner.repositories.nodes.filter(repository => repository.owner.login === login).length,
       },
       languagesData: {
-        involvedLanguages: this.adjustLanguages(involvedLanguages),
-        ownerLanguages: this.adjustLanguages(ownerLanguages)
+        involvedLanguages: adjustedInvolvedLanguages.languages,
+        involvedLanguagesTotal: adjustedInvolvedLanguages.total,
+        ownerLanguages: adjustedOwnerLanguages.languages,
+        ownerLanguagesTotal: adjustedOwnerLanguages.total
       }
     }
   }
 
-  adjustLanguages(languages: Language[]): Language[] {
+  adjustLanguages(languages: Language[]): {languages: Language[], total: LanguagesTotal} {
+    const total: LanguagesTotal = {
+      size: 0, level: 0
+    }
     languages.sort((a, b) => a.size - b.size)
     let level = 1
     for (const language of languages) {
@@ -221,7 +228,12 @@ export class AccountsService {
         level += 1
       }
       language.level = level
+      total.size += language.size
+      total.level += level
     }
-    return languages.sort((a, b) => b.size - a.size)
+    return {
+      languages: languages.sort((a, b) => b.size - a.size),
+      total
+    }
   }
 }
