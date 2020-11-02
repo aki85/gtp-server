@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
 
 @Injectable()
-export class GitHubService {
+export class GitHubApiService {
   private client: AxiosInstance = null
 
   getClient(): AxiosInstance {
@@ -11,7 +11,7 @@ export class GitHubService {
     }
 
     this.client = axios.create({
-      baseURL: 'https://api.github.com/',
+      baseURL: 'https://api.github.com',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

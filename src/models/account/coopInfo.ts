@@ -5,6 +5,9 @@ export default class CoopInfo {
   @Field(type => ID)
   id: string
 
+  @Field()
+  email: string
+
   @Field({ nullable: true })
   name?: string
 

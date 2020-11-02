@@ -3,14 +3,11 @@ import { ConfigModule } from '@nestjs/config'
 import { Module } from '@nestjs/common'
 
 import { AuthModule } from './auth/auth.module'
-import { TodoModule } from './todo/todo.module'
+import { AccountsModule } from './accounts/accounts.module'
 
 import { AppController } from './app.controller'
 
 import { AppService } from './app.service'
-import { DBService } from './db/db.service'
-import { GitHubService } from './api/github.service'
-import { TodoService } from './todo/todo.service'
 
 @Module({
   imports: [
@@ -20,9 +17,9 @@ import { TodoService } from './todo/todo.service'
       autoSchemaFile: 'schema.graphql'
     }),
     AuthModule,
-    TodoModule
+    AccountsModule
   ],
   controllers: [AppController],
-  providers: [AppService, DBService, GitHubService, TodoService],
+  providers: [AppService],
 })
 export class AppModule {}

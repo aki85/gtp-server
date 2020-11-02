@@ -12,4 +12,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: secretKey,
     })
   }
+  
+  async validate(payload: any) {
+    if (!payload.id) return
+    return payload
+  }
 }
