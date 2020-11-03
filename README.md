@@ -14,8 +14,8 @@ yarn
 
 ### dynamodb
 
-yarn run dynamo
-yarn run dynamo-win
+yarn dynamo
+yarn dynamo-win
 
 ### create local table
 
@@ -23,4 +23,4 @@ aws dynamodb create-table --cli-input-json file://./migrations/accountsTable.jso
 aws dynamodb create-table --cli-input-json file://./migrations/githubAnalysesTable.json --endpoint-url http://localhost:8000
 
 ### dev server
-yarn run dev
+yarn dev
