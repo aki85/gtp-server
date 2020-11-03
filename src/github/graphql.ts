@@ -2,6 +2,7 @@ export interface IGithubRowData {
   data: {
     data: {
       repositoryOwner: {
+        login: string,
         repositories: {
           totalCount: number,
           nodes: {
@@ -29,6 +30,7 @@ export interface IGithubRowData {
 export const createGetRowDataQuery = (login) => `
   query {
     repositoryOwner(login:"${login}"){
+      login
       repositories(first:100, privacy:PUBLIC){
         totalCount
         nodes{

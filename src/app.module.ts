@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common'
 
 import { AuthModule } from './auth/auth.module'
 import { AccountsModule } from './accounts/accounts.module'
+import { GithubAnalysisModule } from './github/analysis/githubAnalysis.module'
 
 import { AppController } from './app.controller'
 
@@ -17,7 +18,8 @@ import { AppService } from './app.service'
       autoSchemaFile: 'schema.graphql'
     }),
     AuthModule,
-    AccountsModule
+    AccountsModule,
+    GithubAnalysisModule
   ],
   controllers: [AppController],
   providers: [AppService],

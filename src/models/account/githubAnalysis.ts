@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql'
+import { ObjectType, Field, Int, ID } from '@nestjs/graphql'
 
 @ObjectType()
 class RepositoryCountData {
@@ -55,4 +55,16 @@ export default class GithubAnalysis {
 
   @Field()
   languagesData: LanguagesData
+  
+  @Field(type => ID, {nullable: true})
+  id?: string
+  
+  @Field(type => ID, {nullable: true})
+  login: string
+
+  @Field({nullable: true})
+  savedAt?: string
+  
+  @Field({nullable: true})
+  syncedAt: string
 }

@@ -6,6 +6,7 @@ import { AuthService } from './auth.service'
 import { JwtStrategy } from './jwt.strategy'
 import { DBService } from '../db/db.service'
 import { GitHubApiService } from '../github/api.service'
+import { GithubAnalysisService } from '../github/analysis/githubAnalysis.service'
 import { AccountsService } from '../accounts/accounts.service'
 import { MailService } from '../mail/mail.service'
 import { jwtSignOptions } from './constants'
@@ -23,7 +24,7 @@ import { jwtSignOptions } from './constants'
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, DBService, GitHubApiService, AccountsService, MailService],
+  providers: [AuthService, JwtStrategy, DBService, GitHubApiService, GithubAnalysisService, AccountsService, MailService],
   exports: [AuthService],
 })
 export class AuthModule {}

@@ -1,12 +1,12 @@
 {
-  "TableName": "accounts",
+  "TableName": "githubAnalyses",
   "AttributeDefinitions": [
     {
       "AttributeName": "id",
       "AttributeType": "S"
     },
     {
-      "AttributeName": "githubId",
+      "AttributeName": "login",
       "AttributeType": "S"
     }
   ],
@@ -22,9 +22,9 @@
   },
   "GlobalSecondaryIndexes": [
     {
-      "IndexName": "githubId",
+      "IndexName": "login",
       "KeySchema": [
-        { "AttributeName": "githubId", "KeyType": "HASH" }
+        { "AttributeName": "login", "KeyType": "HASH" }
       ],
       "Projection": {
         "ProjectionType": "ALL"
