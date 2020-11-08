@@ -67,6 +67,8 @@ export class GithubAnalysisService {
       return []
     }
     const githubAnalysisLogs = res.Items.filter(item => item.savedAt)
+      .sort((a, b) => dayjs(b.savedAt).unix() - dayjs(a.savedAt).unix())
+
     return githubAnalysisLogs as GithubAnalysis[]
   }
 
