@@ -54,24 +54,6 @@ export class GithubAnalysisResolver {
     }
     return res
   }
-  
-  @Query(
-    returns => GithubAnalysis,
-    {
-      description: '保存したgithubAnalysisの一覧を取得',
-    },
-  )
-
-  async githubAnalysisLogs(
-    @Args('login') login: string,
-  ): Promise<GithubAnalysis[]> {
-    const client = this.getClient()
-    const res = await this.service.getLogs(client, login)
-    if (!res) {
-      throw new BadRequestException()
-    }
-    return res
-  }
 
   @Mutation(
     returns => GithubAnalysis,

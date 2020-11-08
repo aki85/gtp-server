@@ -7,6 +7,7 @@ import { GithubAnalysisService } from '../github/analysis/githubAnalysis.service
 
 import Account from '../models/account/account'
 import CoopInfo from '../models/account/coopInfo'
+import GithubAnalysis from '../models/account/githubAnalysis'
 
 import { CoopType } from '../types/account/account'
 
@@ -138,9 +139,27 @@ export class AccountsService {
   async saveGithubAnalysis(
     client: DynamoDB.DocumentClient,
     id: string
-  ): Promise<void> {
+  ): Promise<String> {
     const account = await this.get(client, id)
     await this.githubAnalysisService.save(client, account.githubAnalysis)
+    return id
+  }
+
+  async getGithubAnalysisLogs(
+    client: DynamoDB.DocumentClient,
+    id: string
+  ): Promise<GithubAnalysis[]> {
+    const account = await this.get(client, id)
+    const githubAnalysisLogs = await this.githubAnalysisService.getLogs(client, account.githubInfo.alias)
+    return githubAnalysisLogs
+  }
+
+  async deleteGithubAnalysis(
+    client: DynamoDB.DocumentClient,
+    githubId: string,
+  ): Promise<String> {
+    await this.githubAnalysisService.delete(client, githubId)
+    return githubId
   }
 
   async update(

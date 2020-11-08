@@ -60,11 +60,11 @@ export class GithubAnalysisService {
   async getLogs(
     client: DynamoDB.DocumentClient,
     login: string
-  ): Promise<GithubAnalysis[] | null> {
+  ): Promise<GithubAnalysis[]> {
     const params = this.createLoginQueryParam(login)
     const res = await client.query(params).promise()
     if (res.Items.length === 0) {
-      return null
+      return []
     }
     const githubAnalysisLogs = res.Items.filter(item => item.savedAt)
     return githubAnalysisLogs as GithubAnalysis[]
@@ -123,7 +123,6 @@ export class GithubAnalysisService {
     githubAnalysis = await this.analyze(githubAnalysis.login)
     const item: GithubAnalysis = {
       ...githubAnalysis,
-      id,
       syncedAt,
     }
     const params = {
@@ -138,10 +137,12 @@ export class GithubAnalysisService {
     client: DynamoDB.DocumentClient,
     githubAnalysis: GithubAnalysis
   ): Promise<GithubAnalysis> {
+    const id = uuidv4()
     const now = dayjs()
     const savedAt = now.format()
     const item: GithubAnalysis = {
       ...githubAnalysis,
+      id,
       savedAt,
     }
     const params = {

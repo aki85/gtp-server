@@ -59,7 +59,7 @@ export default class GithubAnalysis {
   @Field(type => ID, {nullable: true})
   id?: string
   
-  @Field(type => ID, {nullable: true})
+  @Field(type => ID)
   login: string
 
   @Field({nullable: true})
