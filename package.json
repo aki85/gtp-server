@@ -34,7 +34,7 @@
     "aws-sdk": "^2.772.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
-    "cross-fetch": "^3.0.6",
+    "cross-fetch": "^3.1.5",
     "dayjs": "^1.9.3",
     "email-addresses": "^3.1.0",
     "graphql-tools": "^6.2.4",
